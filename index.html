@@ -25,8 +25,8 @@
             <h2>Tasks</h2>
             <div id="tasks" v-for="(tarea, index) in tareas" :key="index">
                 <div class="task">
-                    <div class="content" :class="isDone">
-                        <input v-model="check" type="checkbox">                                               
+                    <div class="content" :class="{'content-done': tareas.checked}">
+                        <input v-model="tareas.checked" type="checkbox">                                               
                         <input type="text" class="text" id="text" v-bind:value="(tarea)">
                     </div>
                     <div class="actions">
@@ -64,8 +64,10 @@
             el: '#app',        
             data: {
                 nuevaTarea: '',
-                tareas: [],
-                check: false,
+                tareas: [{
+                    nombre: this.nuevaTarea,
+                    checked: null
+                }],                
             },
             methods: {
                 
@@ -82,17 +84,9 @@
 
                 deleteTask(index){
                     this.tareas.splice(index, 1);
-                },
-
-            }, 
-            computed: {
-                isDone(){
-                    return {
-                        'content-done': this.check                        
-                    }
-                    }
                 }
-            });        
+            }, 
+            })        
 
         newTasks.$watch('tareas', (nuevo, antiguo) => {
             window.localStorage.setItem('tareas', JSON.stringify(nuevo));
