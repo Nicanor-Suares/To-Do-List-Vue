@@ -1,0 +1,171 @@
+:root{
+    --back: #383258;
+    --inputColor: #2E294F;
+    --fontColor: #8934c5;
+    --pink: #EC4899;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Fira sans', sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--back);
+    color: white;
+}
+
+header{
+    padding: 2rem 1rem;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header h1{
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.new-tasks-header{
+    display: flex;    
+}
+
+input, button{
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+}
+
+#new-task{
+    flex: 1 1 0%;
+    background-color: var(--inputColor);
+    border-radius: 1rem;
+    margin-right: 1rem;
+    color: white;
+    font-size: 2rem;
+    width: 700px;
+    font-weight: 300;
+}
+
+.new-tasks-header button{
+
+    color: var(--pink);
+    font-size: 1.70rem;
+    font-weight: 500;
+    background-image: linear-gradient(to right, var(--pink), var(--fontColor));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: 0.5s;
+
+}
+
+.new-tasks-header button:hover{
+    opacity: 0.8;
+}
+
+
+.task-list{
+    padding-top: 1rem;   
+    flex: 1 1 0%;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto
+}
+
+.task-list h2{
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+#tasks .task{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--inputColor);
+    border-radius: 1rem;
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+#tasks .task .content {
+    color: white;
+    font-size: 1.50rem;
+    transform: 0.5s;
+    display: block;
+}
+
+.content input{
+    font-size: 1.20rem;
+    color: white;
+    font-weight: 300;
+}
+
+.content-done input{
+    font-size: 1.20rem;
+    color: white;
+    font-weight: 300;
+    text-decoration: line-through;
+}
+
+.content input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--pink);
+    border-radius: 50%;
+    color: white;
+}
+
+.content input[type="checkbox"]:checked{
+    text-decoration: line-through;
+    background-image: linear-gradient(to right, var(--pink), var(--fontColor));
+}
+
+.content-done input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--pink);
+    border-radius: 50%;
+    color: white;
+}
+
+.content-done input[type="checkbox"]:checked{
+    text-decoration: line-through;
+    background-image: linear-gradient(to right, var(--pink), var(--fontColor));
+}
+
+.task .actions button{
+    cursor: pointer;
+    margin: 0 0.5rem;
+    font-size: 1.20rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    transform: 0.5s;
+    transition: 0.5s;
+}
+
+.task .actions .edit{
+    color: var(--pink);
+    background-image: linear-gradient(to right, var(--pink), var(--fontColor));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.task .actions .delete{
+    color: var(--pink);
+    background-image: linear-gradient(to right, tomato, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.task .actions button:hover{
+opacity: 0.8;
+}
