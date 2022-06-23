@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="icon.png" href="icon.png">
     <title>To-do List</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
             <h2>Tasks</h2>
             <div id="tasks" v-for="(tarea, index) in tareas" :key="index">
                 <div class="task">
-                    <div class="content" :class="{'content-done': tareas.checked}">
+                    <div class="content" :class="{'content-done' : tareas.checked}">
                         <input v-model="tareas.checked" type="checkbox">                                               
                         <input type="text" class="text" id="text" v-bind:value="(tarea)">
                     </div>
