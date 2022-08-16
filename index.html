@@ -32,13 +32,12 @@
 					<div class="task">
 						<div class="content">
 							<input v-model="tarea.checked" type="checkbox" @click:taskDone(tarea)>
-							<input type="text" id="text" v-bind:value="tarea.nombre">
+							<input :class="{ 'content-done': tarea.checked }" type="text" id="text" v-bind:value="tarea.nombre">
 						</div>
 						<div class="actions">
 							<button class="delete" v-on:click="deleteTask(index)">Delete</button>
 						</div>
 					</div>
-					<pre> {{tareas.checked}} </pre>
 				</div>
 			</div>
 
