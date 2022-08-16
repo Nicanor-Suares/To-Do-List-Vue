@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="icon.png" href="icon.png">
-    <title>To-do List</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;500&display=swap" rel="stylesheet">
+	<link rel="icon" type="icon.png" href="icon.png">
+	<title>To-do List</title>
 </head>
+
 <body>
 
-<!--test 😳-->
+	<!--test 😳-->
 
-    <header>        
-        <h1>To-do List</h1>
-        <div id="app">
-        <form action="" v-on:submit.prevent="guardarTarea">
-        <div class="new-tasks-header" id="new-tasks-header">
-        <input v-model="nuevaTarea" type="text" id="new-task" placeholder="Add Task">
-        <button>Add Task</button>
-        </div>        
-        </form>
-        
-        <div class="task-list">
-            <h2>Tasks</h2>
-            <div id="tasks" v-for="(tarea, index) in tareas" :key="index">
-                <div class="task">
-                    <div class="content">
-                        <input v-model="tarea" type="checkbox" @click:taskDone(tarea)>                                               
-                        <input type="text" id="text" v-bind:value="(tarea)">
-                    </div>
-                    <div class="actions">
-                        <button class="delete" v-on:click="deleteTask(index)" >Delete</button>
-                    </div>
-                </div>
-                <pre> {{tareas.checked}} </pre>
-            </div>
-        </div>
+	<header>
+		<h1>To-do List</h1>
+		<div id="app">
+			<form action="" v-on:submit.prevent="guardarTarea">
+				<div class="new-tasks-header" id="new-tasks-header">
+					<input v-model="nuevaTarea" type="text" id="new-task" placeholder="Add Task">
+					<button>Add Task</button>
+				</div>
+			</form>
 
-    </div>
-    </header>
+			<div class="task-list">
+				<h2>Tasks</h2>
+				<div id="tasks" v-for="(tarea, index) in tareas" :key="index">
+					<div class="task">
+						<div class="content">
+							<input v-model="tarea" type="checkbox" @click:taskDone(tarea)>
+							<input type="text" id="text" v-bind:value="tarea.nombre">
+						</div>
+						<div class="actions">
+							<button class="delete" v-on:click="deleteTask(index)">Delete</button>
+						</div>
+					</div>
+					<pre> {{tareas.checked}} </pre>
+				</div>
+			</div>
 
-        <template id="tasks-template">
-            <div class="task">
-                <div class="content">
-                    <input type="checkbox">
-                    <input type="text" class="text" id="text" value="this is a task" readonly>
-                </div>
-                <div class="actions">
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                </div>
-            </div>
-        </template>
+		</div>
+	</header>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+	<template id="tasks-template">
+		<div class="task">
+			<div class="content">
+				<input type="checkbox">
+				<input type="text" class="text" id="text" value="this is a task" readonly>
+			</div>
+			<div class="actions">
+				<button class="edit">Edit</button>
+				<button class="delete">Delete</button>
+			</div>
+		</div>
+	</template>
 
-    <script>
-        let newTasks = new Vue({     
-            
-            mounted(){
-                if(window.localStorage.getItem('tareas'))
-                    this.tareas = JSON.parse(window.localStorage.getItem('tareas'));
-            },
-            el: '#app',        
-            data: {
-                nuevaTarea: '',
-                tareas: []          
-            },
-            methods: {
-                
-                guardarTarea(){
+	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-                    if(this.nuevaTarea === ''){
-                        return
-                    }
+	<script>
+		let newTasks = new Vue({
 
-                    this.tareas.push({nombre: this.nuevaTarea, checked: false});
-                    this.nuevaTarea = '';
-                    
-                },
+			mounted() {
+				if (window.localStorage.getItem('tareas'))
+					this.tareas = JSON.parse(window.localStorage.getItem('tareas'));
+			},
+			el: '#app',
+			data: {
+				nuevaTarea: '',
+				tareas: []
+			},
+			methods: {
 
-                deleteTask(index){
-                    this.tareas.splice(index, 1);
-                },
+				guardarTarea() {
 
-                taskDone(tarea){
-                    tarea.checked = !tarea.checked;
-                }
+					if (this.nuevaTarea === '') {
+						return
+					}
 
-            }, 
-            })        
+					this.tareas.push({ nombre: this.nuevaTarea, checked: false });
+					this.nuevaTarea = '';
 
-        newTasks.$watch('tareas', (nuevo, antiguo) => {
-            window.localStorage.setItem('tareas', JSON.stringify(nuevo));
-        }, {deep: true})
+				},
 
-        Vue.config.devtools = true;
+				deleteTask(index) {
+					this.tareas.splice(index, 1);
+				},
 
-    </script>
+				taskDone(tarea) {
+					tarea.checked = !tarea.checked;
+				}
+
+			},
+		})
+
+		newTasks.$watch('tareas', (nuevo, antiguo) => {
+			window.localStorage.setItem('tareas', JSON.stringify(nuevo));
+		}, { deep: true })
+
+		Vue.config.devtools = true;
+
+	</script>
 
 </body>
+
 </html>
