@@ -27,7 +27,8 @@
 			</form>
 
 			<div class="task-list">
-				<h2>Tasks</h2>
+				<h2 v-if="tareas.length === 0">There are no tasks, try adding one 🥺</h2>
+                <h2 v-else>Tasks</h2>
 				<div id="tasks" v-for="(tarea, index) in tareas" :key="index">
 					<div class="task">
 						<div class="content">
