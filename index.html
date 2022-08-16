@@ -9,6 +9,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;500&display=swap" rel="stylesheet">
 	<link rel="icon" type="icon.png" href="icon.png">
+    <script src="./script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 	<title>To-do List</title>
 </head>
 
@@ -57,52 +59,6 @@
 			</div>
 		</div>
 	</template>
-
-	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-
-	<script>
-		let newTasks = new Vue({
-
-			mounted() {
-				if (window.localStorage.getItem('tareas'))
-					this.tareas = JSON.parse(window.localStorage.getItem('tareas'));
-			},
-			el: '#app',
-			data: {
-				nuevaTarea: '',
-				tareas: []
-			},
-			methods: {
-
-				guardarTarea() {
-
-					if (this.nuevaTarea === '') {
-						return
-					}
-
-					this.tareas.push({ nombre: this.nuevaTarea, checked: false });
-					this.nuevaTarea = '';
-
-				},
-
-				deleteTask(index) {
-					this.tareas.splice(index, 1);
-				},
-
-				taskDone(tarea) {
-					tarea.checked = !tarea.checked;
-				}
-
-			},
-		})
-
-		newTasks.$watch('tareas', (nuevo, antiguo) => {
-			window.localStorage.setItem('tareas', JSON.stringify(nuevo));
-		}, { deep: true })
-
-		Vue.config.devtools = true;
-
-	</script>
 
 </body>
 
