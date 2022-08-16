@@ -109,7 +109,7 @@ input, button{
     font-weight: 300;
 }
 
-.content-done input{
+input.content-done{
     font-size: 1.20rem;
     color: white;
     font-weight: 300;

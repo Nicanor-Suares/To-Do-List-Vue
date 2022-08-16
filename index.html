@@ -29,8 +29,8 @@
             <div id="tasks" v-for="(tarea, index) in tareas" :key="index">
                 <div class="task">
                     <div class="content">
-                        <input v-model="tareas.checked" type="checkbox" @click:taskDone(tarea)>                                               
-                        <input type="text" class="content-done" id="text" v-bind:value="(tarea)">
+                        <input v-model="tarea" type="checkbox" @click:taskDone(tarea)>                                               
+                        <input type="text" id="text" v-bind:value="(tarea)">
                     </div>
                     <div class="actions">
                         <button class="delete" v-on:click="deleteTask(index)" >Delete</button>
@@ -68,10 +68,7 @@
             el: '#app',        
             data: {
                 nuevaTarea: '',
-                tareas: [{
-                    nombre: this.nuevaTarea,
-                    checked: false
-                }],                
+                tareas: []          
             },
             methods: {
                 
@@ -81,7 +78,7 @@
                         return
                     }
 
-                    this.tareas.push(this.nuevaTarea);
+                    this.tareas.push({nombre: this.nuevaTarea, checked: false});
                     this.nuevaTarea = '';
                     
                 },
