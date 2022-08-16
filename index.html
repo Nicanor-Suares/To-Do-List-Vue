@@ -31,7 +31,7 @@
 				<div id="tasks" v-for="(tarea, index) in tareas" :key="index">
 					<div class="task">
 						<div class="content">
-							<input v-model="tarea" type="checkbox" @click:taskDone(tarea)>
+							<input v-model="tarea.checked" type="checkbox" @click:taskDone(tarea)>
 							<input type="text" id="text" v-bind:value="tarea.nombre">
 						</div>
 						<div class="actions">
