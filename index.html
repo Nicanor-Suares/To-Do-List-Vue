@@ -9,8 +9,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;500&display=swap" rel="stylesheet">
 	<link rel="icon" type="icon.png" href="icon.png">
-    <script src="./script.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+	<script src="./script.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 	<title>To-do List</title>
 </head>
 
@@ -30,11 +30,11 @@
 
 			<div class="task-list">
 				<h2 v-if="tareas.length === 0">There are no tasks, try adding one 🥺</h2>
-                <h2 v-else>Tasks</h2>
+				<h2 v-else>Tasks</h2>
 				<div id="tasks" v-for="(tarea, index) in tareas" :key="index">
 					<div class="task">
 						<div class="content">
-							<input v-model="tarea.checked" type="checkbox" @click:taskDone(tarea)>
+							<input v-model="tarea.checked" type="checkbox" :click="taskDone(tarea)">
 							<input :class="{ 'content-done': tarea.checked }" type="text" id="text" v-bind:value="tarea.nombre">
 						</div>
 						<div class="actions">
@@ -47,7 +47,7 @@
 		</div>
 	</header>
 
-	<template id="tasks-template">
+	<!-- <template id="tasks-template">
 		<div class="task">
 			<div class="content">
 				<input type="checkbox">
@@ -58,7 +58,7 @@
 				<button class="delete">Delete</button>
 			</div>
 		</div>
-	</template>
+	</template> -->
 
 </body>
 
